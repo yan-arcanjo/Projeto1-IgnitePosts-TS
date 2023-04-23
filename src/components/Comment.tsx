@@ -14,11 +14,9 @@ interface CommentProps {
 export const Comment = ({ id, content, OnDeleteComment }: CommentProps) => {
 	const [likes, setLikes] = useState(0);
 
-	const publishedAt = new Date();
+	const date = new Date();
 
-	console.log(publishedAt);
-
-	const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+	const publishedDateRelativeToNow = formatDistanceToNow(date, {
 		locale: ptBR,
 		addSuffix: true,
 	});

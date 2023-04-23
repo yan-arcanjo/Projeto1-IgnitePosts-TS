@@ -31,8 +31,8 @@ interface PostProps {
 	content: Content[];
 	turnOnModal: (a: boolean) => void;
 	deleteComment: (
-		comments: string[],
-		setComments: (comments: string[]) => void,
+		comments: Comment[],
+		setComments: (comments: Comment[]) => void,
 		comment: string
 	) => void;
 }

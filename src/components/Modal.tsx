@@ -6,9 +6,9 @@ interface Comment {
 }
 
 interface DeleteComments {
-	comments: Comment[];
-	comment: string;
-	setComments: (comments: Comment[]) => void;
+	comments: Comment[] | null;
+	comment: string | null;
+	setComments: ((comments: Comment[]) => void) | null;
 }
 
 interface ModalProps {
@@ -32,11 +32,16 @@ export const Modal = ({ setModal, deleteComment }: ModalProps) => {
 					</button>
 					<button
 						onClick={() => {
-							deleteComment.setComments(
-								deleteComment.comments.filter(
-									(c) => c.id != deleteComment.comment
-								)
-							);
+							if (
+								deleteComment.comments != null &&
+								deleteComment.setComments != null
+							) {
+								deleteComment.setComments(
+									deleteComment.comments.filter(
+										(c) => c.id != deleteComment.comment
+									)
+								);
+							}
 							setModal(false);
 						}}
 						className={styles.btnConfirm}>

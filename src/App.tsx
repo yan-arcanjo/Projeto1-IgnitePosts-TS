@@ -65,17 +65,20 @@ interface Comment {
 	content: string;
 }
 
+interface DeleteComment {
+	comments: Comment[] | null;
+	setComments: ((comments: Comment[]) => void) | null;
+	comment: string | null;
+}
+
 const body = document.querySelector("body");
 
 function App() {
 	const [modalOn, setModalOn] = useState(false);
-	const [modalDeleteComment, setModalDeleteComment] = useState({
-		comments: [{ id: "l32sd", content: "fft" }],
-		setComments: function (a: Comment[]) {
-			a.pop();
-			return;
-		},
-		comment: "",
+	const [modalDeleteComment, setModalDeleteComment] = useState<DeleteComment>({
+		comments: null,
+		comment: null,
+		setComments: null,
 	});
 
 	function deleteComment(

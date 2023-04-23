@@ -20,6 +20,11 @@ interface Content {
 	content: string;
 }
 
+interface Comment {
+	id: string;
+	content: string;
+}
+
 interface PostProps {
 	author: Author;
 	publishedAt: Date;
@@ -39,12 +44,17 @@ export const Post = ({
 	turnOnModal,
 	deleteComment,
 }: PostProps) => {
-	const [comments, setComments] = useState<string[]>([]);
+	const [comments, setComments] = useState<Comment[]>([]);
+
 	const [newComment, setNewComment] = useState("");
 
 	const handleCreateNewComment = (event: FormEvent) => {
 		event.preventDefault();
-		setComments([...comments, newComment]);
+		const newItem = {
+			id: Math.floor(Date.now() * Math.random()).toString(36),
+			content: newComment,
+		};
+		setComments([...comments, newItem]);
 		setNewComment("");
 	};
 
@@ -132,8 +142,9 @@ export const Post = ({
 					{comments.map((comment) => {
 						return (
 							<Comment
-								key={comment}
-								content={comment}
+								key={Math.floor(Date.now() * Math.random()).toString(36)}
+								content={comment.content}
+								id={comment.id}
 								OnDeleteComment={handleDeleteComment}
 							/>
 						);

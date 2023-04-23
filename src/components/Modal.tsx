@@ -1,10 +1,15 @@
 import styles from "./Modal.module.css";
 
-type DeleteComments = {
-	comments: string[];
+interface Comment {
+	id: string;
+	content: string;
+}
+
+interface DeleteComments {
+	comments: Comment[];
 	comment: string;
-	setComments: (comments: string[]) => void;
-};
+	setComments: (comments: Comment[]) => void;
+}
 
 interface ModalProps {
 	setModal: (state: boolean) => void;
@@ -28,7 +33,9 @@ export const Modal = ({ setModal, deleteComment }: ModalProps) => {
 					<button
 						onClick={() => {
 							deleteComment.setComments(
-								deleteComment.comments.filter((c) => c != deleteComment.comment)
+								deleteComment.comments.filter(
+									(c) => c.id != deleteComment.comment
+								)
 							);
 							setModal(false);
 						}}

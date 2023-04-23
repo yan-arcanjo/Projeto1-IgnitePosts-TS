@@ -60,24 +60,27 @@ const posts = [
 	},
 ];
 
+interface Comment {
+	id: string;
+	content: string;
+}
+
 const body = document.querySelector("body");
 
 function App() {
 	const [modalOn, setModalOn] = useState(false);
 	const [modalDeleteComment, setModalDeleteComment] = useState({
-		comments: [""],
-		setComments: function (a: string[]) {
+		comments: [{ id: "l32sd", content: "fft" }],
+		setComments: function (a: Comment[]) {
 			a.pop();
 			return;
 		},
 		comment: "",
 	});
 
-	console.log(modalDeleteComment);
-
 	function deleteComment(
-		comments: string[],
-		setComments: (comments: string[]) => void,
+		comments: Comment[],
+		setComments: (comments: Comment[]) => void,
 		comment: string
 	) {
 		setModalDeleteComment({

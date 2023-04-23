@@ -66,7 +66,8 @@ function App() {
 	const [modalOn, setModalOn] = useState(false);
 	const [modalDeleteComment, setModalDeleteComment] = useState({
 		comments: [""],
-		setComments: function () {
+		setComments: function (a: string[]) {
+			a.pop();
 			return;
 		},
 		comment: "",
